@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var xhttp1, xhttp2, obj1, obj2, cafe, park;
+
+cafe = [] ;
+
+park = [] ;
+
+xhttp1 = new XMLHttpRequest();
+xhttp1.onreadystatechange = function(){
+ if(this.readyState==4 && this.status==200){
+   obj1 = JSON.parse(this.responseText);
+   for(var i =0; i < obj1.results.length ; i++){
+     cafe.push({
+       name : obj1.results[i].name,
+       rating : obj1.results[i].rating
+     });
+   }
+   console.log(cafe);
+ }
+};
+
+xhttp1.open("GET", "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=28.6289332,77.2065322&radius=20000&type=cafe&key=AIzaSyAOERb90K5NLqz98ZqeacjdRIfNQBrBnVY", true);
+xhttp1.send();
+</script>
+</html>
